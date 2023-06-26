@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voting System</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body style="background-color: #424242">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content card-text" style="background-color: #f3f3f3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="startVoteModalLabel">
+            Adding a new vote process
+          </h5>
+        </div>
+        <div class="modal-body">
+          <form
+            id="startVoteForm"
+            method="post"
+            class="needs-validation"
+            novalidate
+            th:action="@{/voting-processes/save}"
+            th:object="${votingProcess}"
+          >
+            <div class="mb-3">
+              <label th:field="*{title}" class="form-label"
+                >Vote Process Title
+              </label>
+              <input
+                th:field="*{title}"
+                type="text"
+                class="form-control"
+                placeholder="Enter vote title"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="voteDescription" class="form-label"
+                >Vote Process Description</label
+              >
+              <textarea
+                th:field="*{description}"
+                class="form-control"
+                id="voteDescription"
+                placeholder="Enter vote description"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="startDate" class="form-label">Start Date</label>
+              <input
+                th:field="*{startDate}"
+                type="date"
+                class="form-control"
+                id="startDate"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="endDate" class="form-label">End Date</label>
+              <input
+                th:field="*{endDate}"
+                type="date"
+                class="form-control"
+                id="endDate"
+                required
+              />
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                onclick="window.location.href='/voting-processes/save'"
+                class="btn btn-primary"
+              >
+                Start Vote Process
+              </button>
+              <button
+                type="button"
+                onclick="window.location.href='/voting-processes'"
+                class="btn btn-info"
+              >
+                Back to List
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
